@@ -8,7 +8,7 @@ body {
     background-color: #ffffff;
 }
 
-/* Requisito: Skip Link (Saltar al contenido) */
+/* Requisito: Saltar al contenido principal */
 .skip-link {
     position: absolute;
     top: -100px;
@@ -22,11 +22,10 @@ body {
 }
 
 .skip-link:focus {
-    top: 0; /* Solo visible al enfocar con TAB */
-    outline: 3px solid #ffcc00;
+    top: 0;
 }
 
-/* --- 2. HEADER Y NAVEGACIÓN (FLEXBOX) --- */
+/* --- 2. HEADER Y NAVEGACIÓN --- */
 header {
     background-color: #000000;
     color: #ffffff;
@@ -34,25 +33,30 @@ header {
     padding: 2rem 1rem;
 }
 
+/* Requisito: Nav inline-block al 80% */
 nav {
     background-color: #333333;
+    display: inline-block;
+    width: 80%;
+    margin: 0 10%; 
     position: sticky;
     top: 0;
     z-index: 10;
+    text-align: center;
 }
 
 nav ul {
-    /* Requisito: Uso de Flexbox */
-    display: flex;
-    justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-nav ul li {
+/* Requisito: Comentar estilo de li */
+/* nav ul li {
     margin: 0;
-}
+} */
 
 nav a {
     display: block;
@@ -60,42 +64,51 @@ nav a {
     text-decoration: none;
     padding: 1rem 2rem;
     font-weight: bold;
-    /* Requisito: Al menos 3 propiedades para la navegación */
     border-left: 1px solid #444;
     text-transform: uppercase;
     transition: all 0.4s ease;
 }
 
-/* Requisito: Pseudo-clase hover con efecto interesante */
 nav a:hover {
     background-color: #ffffff;
     color: #000000;
     transform: scale(1.1);
 }
 
+/* Requisito: Imagen en nav al 10% */
+nav img {
+    width: 10%;
+}
+
 /* --- 3. DISEÑO DE CUADRÍCULA (GRID) --- */
+/* Requisito: 2 columnas de 40% */
 .grid-container {
-    /* Requisito: Uso de Grid con al menos 2 columnas */
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    padding: 40px 10%;
+    grid-template-columns: 40% 40%;
+    /* AJUSTE: gap de 5% para que no se peguen y centrado */
+    column-gap: 5%; 
+    row-gap: 20px;
+    padding: 40px 5%;
+    justify-content: center;
     align-items: center;
 }
 
-/* --- 4. MODELO DE CAJA E IMÁGENES --- */
-img {
-    /* Requisito: Modelo de caja (border, padding, border-radius) */
+/* Requisito: Imagen en grid al 100% */
+.grid-container img {
+    width: 100%;
+    height: auto;
     border: 8px solid #333333;
     padding: 10px;
     border-radius: 20px;
-    max-width: 100%;
-    height: auto;
     display: block;
-    margin: 0 auto;
 }
 
-/* Requisito: Flexbox aplicado a otro elemento (Galería) */
+/* AJUSTE EXTRA: Margen al texto para que no toque la imagen */
+.text-content {
+    padding: 0 20px;
+}
+
+/* --- 4. FLEXBOX (GALERÍA) --- */
 .gallery-flex {
     display: flex;
     flex-wrap: wrap;
@@ -104,15 +117,14 @@ img {
     padding: 20px;
 }
 
-/* Requisito: Implementar nth-child */
-/* Damos radios de borde distintos a imágenes pares e impares */
+/* Requisito: nth-child */
 .gallery-flex img:nth-child(odd) {
-    border-color: #005a9c;
+    border: 5px solid #005a9c;
     border-radius: 50% 20% 50% 20%;
 }
 
 .gallery-flex img:nth-child(even) {
-    border-color: #bf0000;
+    border: 5px solid #bf0000;
     border-radius: 20% 50% 20% 50%;
 }
 
@@ -125,12 +137,13 @@ footer {
     margin-top: 40px;
 }
 
-/* Media Query para móviles (Opcional, pero recomendado para validación) */
+/* Responsivo */
 @media (max-width: 768px) {
     .grid-container {
         grid-template-columns: 1fr;
     }
-    nav ul {
-        flex-direction: column;
+    nav {
+        width: 100%;
+        margin: 0;
     }
 }
